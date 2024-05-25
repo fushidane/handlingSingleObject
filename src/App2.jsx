@@ -2,75 +2,75 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [phubPersonalities, setPhubPersonalities] = useState([
-    { id: 1, name: "Lexi Llore", stageName: "LLore", specialty: "Deepthroat" },
-    { id: 2, name: "Miya Khalifa", stageName: "Khalifa", specialty: "Big Cock" },
+  const [mgaGwapo, setMgaGwapo] = useState([
+    { id: 1, name: "Tito Santos", nickname: "Tito", specialty: "Charming Smile" },
+    { id: 2, name: "Stern Lopez", nickname: "Stern", specialty: "Athletic Build" },
   ]);
 
   const [editMode, setEditMode] = useState(false);
-  const [editedPersonality, setEditedPersonality] = useState({});
+  const [editedGwapo, setEditedGwapo] = useState({});
 
-  const handleAddPersonality = () => {
+  const handleAddGwapo = () => {
     const nameInput = document.getElementById('nameInput').value;
-    const stageNameInput = document.getElementById('stageNameInput').value;
+    const nicknameInput = document.getElementById('nicknameInput').value;
     const specialtyInput = document.getElementById('specialtyInput').value;
 
     if (editMode) {
-      const updatedPersonalities = phubPersonalities.map(personality =>
-        personality.id === editedPersonality.id
-          ? { ...personality, name: nameInput, stageName: stageNameInput, specialty: specialtyInput }
-          : personality
+      const updatedGwapo = mgaGwapo.map(gwapo =>
+        gwapo.id === editedGwapo.id
+          ? { ...gwapo, name: nameInput, nickname: nicknameInput, specialty: specialtyInput }
+          : gwapo
       );
-      setPhubPersonalities(updatedPersonalities);
+      setMgaGwapo(updatedGwapo);
       setEditMode(false);
     } else {
-      const newPersonality = {
+      const newGwapo = {
         id: Date.now(),
         name: nameInput,
-        stageName: stageNameInput,
+        nickname: nicknameInput,
         specialty: specialtyInput
       };
-      setPhubPersonalities(personalities => [...personalities, newPersonality]);
+      setMgaGwapo(gwapo => [...gwapo, newGwapo]);
     }
 
     document.getElementById('nameInput').value = "";
-    document.getElementById('stageNameInput').value = "";
+    document.getElementById('nicknameInput').value = "";
     document.getElementById('specialtyInput').value = "";
   };
 
-  const handleEditPersonality = (personality) => {
-    setEditedPersonality(personality);
+  const handleEditGwapo = (gwapo) => {
+    setEditedGwapo(gwapo);
     setEditMode(true);
-    document.getElementById('nameInput').value = personality.name;
-    document.getElementById('stageNameInput').value = personality.stageName;
-    document.getElementById('specialtyInput').value = personality.specialty;
+    document.getElementById('nameInput').value = gwapo.name;
+    document.getElementById('nicknameInput').value = gwapo.nickname;
+    document.getElementById('specialtyInput').value = gwapo.specialty;
   };
 
-  const handleRemovePersonality = (id) => {
-    setPhubPersonalities(personalities => personalities.filter(personality => personality.id !== id));
+  const handleRemoveGwapo = (id) => {
+    setMgaGwapo(gwapo => gwapo.filter(person => person.id !== id));
   };
 
   return (
     <div className="container">
-      <h1>Top PHub Personalities</h1>
+      <h1>Mga Gwapo</h1>
       <table>
         <thead>
           <tr>
             <th>Name</th>
-            <th>Stage Name</th>
+            <th>Nickname</th>
             <th>Specialty</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {phubPersonalities.map(personality => (
-            <tr key={personality.id}>
-              <td>{personality.name}</td>
-              <td>{personality.stageName}</td>
-              <td>{personality.specialty}</td>
+          {mgaGwapo.map(gwapo => (
+            <tr key={gwapo.id}>
+              <td>{gwapo.name}</td>
+              <td>{gwapo.nickname}</td>
+              <td>{gwapo.specialty}</td>
               <td>
-                <button onClick={() => handleEditPersonality(personality)}>Edit</button>
-                <button onClick={() => handleRemovePersonality(personality.id)}>Remove</button>
+                <button onClick={() => handleEditGwapo(gwapo)}>Edit</button>
+                <button onClick={() => handleRemoveGwapo(gwapo.id)}>Remove</button>
               </td>
             </tr>
           ))}
@@ -82,14 +82,14 @@ function App() {
           <input type="text" id="nameInput" />
         </div>
         <div className="input-group">
-          <label htmlFor="stageName">Stage Name:</label>
-          <input type="text" id="stageNameInput" />
+          <label htmlFor="nickname">Nickname:</label>
+          <input type="text" id="nicknameInput" />
         </div>
         <div className="input-group">
           <label htmlFor="specialty">Specialty:</label>
           <input type="text" id="specialtyInput" />
         </div>
-        <button onClick={handleAddPersonality}>{editMode ? "Update" : "Add Personality"}</button>
+        <button onClick={handleAddGwapo}>{editMode ? "Update" : "Add Gwapo"}</button>
       </div>
     </div>
   );
